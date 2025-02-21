@@ -1,39 +1,55 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    localStorage.setItem("token", "dummy-jwt-token");
-    navigate("/dashboard");
+
+    // Simulate login (replace with real auth logic if needed)
+    if (email && password) {
+      const user = { email }; // Store user info
+      localStorage.setItem("user", JSON.stringify(user));
+      navigate("/dashboard"); // Redirect to dashboard
+    } else {
+      alert("Please enter email and password");
+    }
   };
 
   return (
-    <div className="flex justify-center mt-10">
-      <form className="p-6 bg-gray-100 rounded" onSubmit={handleLogin}>
-        <h2 className="text-xl">Login</h2>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="block w-full p-2 mt-2 border"
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="block w-full p-2 mt-2 border"
-        />
-        <button className="bg-blue-500 text-white p-2 mt-4 w-full">Login</button>
-      </form>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+      <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+        <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
+        <form onSubmit={handleLogin} className="space-y-4">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            className="w-full p-2 border rounded-md text-black dark:text-white dark:bg-gray-700"
+            required
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            className="w-full p-2 border rounded-md text-black dark:text-white dark:bg-gray-700"
+            required
+          />
+          <button
+            type="submit"
+            className="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+          >
+            Login
+          </button>
+        </form>
+      </div>
     </div>
   );
-}
+};
 
 export default Login;

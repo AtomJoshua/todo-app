@@ -1,31 +1,37 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Dashboard from './pages/Dashboard';
-import PrivateRoute from './components/PrivateRoute';
-import Navbar from './components/Navbar';
-import './index.css';
+import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Dashboard from "./pages/Dashboard";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import FinishedTasks from "./pages/FinishedTasks";
 
-function App() {
+const App = () => {
+  // State to track logged-in user
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setUser(JSON.parse(localStorage.getItem("user"))); // ✅ Update when user logs in/out
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
+
   return (
-    
-    <div className="min-h-screen bg-gray-100">
+    <div className="bg-white dark:bg-gray-900 text-black dark:text-white min-h-screen">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/dashboard" element={user ? <Dashboard /> : <Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={
-          <PrivateRoute>
-            <Dashboard />
-          </PrivateRoute>
-          } />
-        </Routes>
-      </div>
-    
+        <Route path="/FinishedTasks" element={<FinishedTasks />} />
+      </Routes>
+    </div>
   );
-}
+};
 
 export default App;
