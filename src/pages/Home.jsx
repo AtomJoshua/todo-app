@@ -9,10 +9,10 @@ const Home = () => {
     if (user && user.token) { // ✅ Ensure user exists & has a token
       navigate("/dashboard", { replace: true }); // ✅ Use replace to prevent back navigation
     }
-  }, [navigate]); // ✅ Dependency array includes navigate to prevent unnecessary calls
+  }, [navigate]); 
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 text-black">
       <h1 className="text-3xl font-bold mb-4">Welcome to Taskflow</h1>
       <h1 className="text-3xl font-bold mb-4">Manage and track all your tasks with ease!</h1>
       <div className="space-x-4">
