@@ -20,10 +20,10 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
-      <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
-        <form onSubmit={handleLogin} className="space-y-4">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 text-black">
+      <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md text-black">
+        <h2 className="text-2xl font-bold mb-4 text-center text-black">Login</h2>
+        <form onSubmit={handleLogin} className="space-y-4 text-black">
           <input
             type="email"
             value={email}
