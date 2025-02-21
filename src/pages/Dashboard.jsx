@@ -79,7 +79,7 @@ const Dashboard = () => {
       </div>
 
       {/* Task Input */}
-      <div className="flex flex-col sm:flex-row gap-2 mb-4">
+      <div className="flex flex-col sm:flex-row gap-2 mb-4 bg-gray-100 text-black">
         <input
           type="text"
           value={newTask}
@@ -99,7 +99,7 @@ const Dashboard = () => {
           <Droppable droppableId="pendingTasks">
             {(provided) => (
               <ul ref={provided.innerRef} {...provided.droppableProps} className="w-full sm:w-1/2 space-y-3">
-                <h2 className="text-lg font-bold mb-2">Pending Tasks</h2>
+                <h2 className="text-lg font-bold mb-2 text-black">Pending Tasks</h2>
                 {tasks.map((task, index) => (
                   <Draggable key={task.id} draggableId={task.id.toString()} index={index}>
                     {(provided) => (
