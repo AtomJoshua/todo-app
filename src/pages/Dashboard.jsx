@@ -64,10 +64,10 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen p-4 sm:p-6 bg-gray-100">
+    <div className="min-h-screen p-4 sm:p-6 bg-gray-100 text-black">
       {/* Navbar */}
       <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold mb-2 sm:mb-0">Dashboard</h1>
+        <h1 className="text-2xl font-bold mb-2 sm:mb-0 text-black">Dashboard</h1>
         <div className="flex gap-2 sm:gap-4">
           <Link to="/FinishedTasks" className="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-700 transition">
             Finished Tasks
@@ -94,7 +94,7 @@ const Dashboard = () => {
 
       {/* Drag & Drop Context */}
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex flex-col sm:flex-row gap-4 text-black">
           {/* Pending Tasks */}
           <Droppable droppableId="pendingTasks">
             {(provided) => (
@@ -107,7 +107,7 @@ const Dashboard = () => {
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        className="flex justify-between items-center p-3 border rounded-md bg-white"
+                        className="flex justify-between items-center p-3 border rounded-md bg-white text-black"
                       >
                         <span>{task.title}</span>
                         <div className="flex gap-2">
@@ -131,7 +131,7 @@ const Dashboard = () => {
           <Droppable droppableId="finishedTasks">
             {(provided) => (
               <ul ref={provided.innerRef} {...provided.droppableProps} className="w-full sm:w-1/2 space-y-3 bg-gray-200 p-4 rounded-md">
-                <h2 className="text-lg font-bold mb-2">Finished Tasks</h2>
+                <h2 className="text-lg font-bold mb-2 text-black">Finished Tasks</h2>
                 {finishedTasks.map((task, index) => (
                   <Draggable key={task.id} draggableId={task.id.toString()} index={index}>
                     {(provided) => (
